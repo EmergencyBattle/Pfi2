@@ -15,11 +15,15 @@ public class Cat extends Mammal {
 	public int getNumberOfLives(){
 		return this.numberOfLives;
 	}
+	
+	public int getGestationTime(int i){
+		return this.gestationTime;
+	}
 
-	//Katten skriver inte ut sin nursing time
+	//Katten skriver nu ut sin nursing time
 	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
-		return "The cat " + getLatinName() + " has " + getNumberOfLives() + " lives.";
+		return "The cat " + getLatinName() + " has " + getNumberOfLives() + " lives" + "and nurses for " + getGestationTime() + " months.";
 	}
 }

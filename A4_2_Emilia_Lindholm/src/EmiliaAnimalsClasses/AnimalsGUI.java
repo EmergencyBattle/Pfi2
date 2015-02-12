@@ -52,7 +52,7 @@ public class AnimalsGUI extends JFrame {
 		JLabel lblAnimalList = new JLabel("Animal List");
 		contentPane.add(lblAnimalList, BorderLayout.NORTH);
 		
-		//Katten skriver inte ut sin nursing time
+		//Katten skriver nu ut sin nursing time
 		animalList.add(new Snake("slingrigus serpentus", false));
 		animalList.add(new Dog("hund", "barkus svansus", true));
 		animalList.add(new Cat("purrus meowus", 10, 5));
