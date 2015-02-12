@@ -20,7 +20,7 @@ public class Cat extends Mammal {
 		return this.gestationTime;
 	}
 
-	//Katten skriver nu ut sin nursing time
+	//Katten skriver nu ut sin nursing time fullt ut
 	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
