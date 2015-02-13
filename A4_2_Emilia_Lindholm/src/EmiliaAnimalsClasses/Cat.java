@@ -17,7 +17,7 @@ public class Cat extends Mammal {
 	}
 	
 	public int getGestationTime(int i){
-		return this.gestationTime;
+		return gestationTime;
 	}
 
 	//Katten skriver nu ut sin nursing time fullt ut

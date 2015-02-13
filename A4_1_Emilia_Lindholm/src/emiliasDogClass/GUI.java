@@ -62,7 +62,7 @@ public class GUI extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//När du använder < 4 måste man ha minst 4 bokstäver, använd < 3
-				if(textFieldHuman.getText().length() < 4){
+				if(textFieldHuman.getText().length() < 3){
 					textFieldGetInfo.setText("Your name has to include atleast 3 letters"); 
 				}else{
 				human = new Human(textFieldHuman.getText());
