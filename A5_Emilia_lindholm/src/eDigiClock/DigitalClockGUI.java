@@ -162,7 +162,7 @@ public class DigitalClockGUI extends JFrame {
 		labelTime.setText(time);
 	}
 	
-	
+	public boolean activate;
 	
 	public void alarm (boolean activate){
 		if (activate == true){

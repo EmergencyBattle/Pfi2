@@ -50,7 +50,7 @@ public class ClockLogic implements ClockInterface {
 		
 	
 		if (this.alarmHour == hours && this.alarmMinute == minutes){
-			
+			DigitalClockGUI.activate = true;
 			}
 
 	}
