@@ -5,6 +5,9 @@ public class ClockLogic implements ClockInterface {
 	private DigitalClockGUI clockGUI;
 	private int alarmHour;
 	private int alarmMinute;
+	private int realHour;
+	private int realMinute;
+	
 	
 	public ClockLogic (DigitalClockGUI clockIn){
 		this.clockGUI = clockIn;
@@ -27,31 +30,40 @@ public class ClockLogic implements ClockInterface {
 
 	@Override
 	public void update(int hours, int minutes, int seconds) {
-		// TODO Auto-generated method stub
 		
-	    String zero1 = "";
-	  String zero2 = "";
-	  String zero3 = "";
-	  
-	  if (hours < 10){
-	   zero1 = "0";
-	  }
-	  if (minutes < 10){
-	   zero2 = "0";
-	  }
-	  if (seconds < 10){
-	   zero3 = "0";
-	  }
 
-	clockGUI.setTimeOnLabel(zero1 + hours + ":" + zero2 + minutes + ":" + zero3 + seconds);
-	  zero1 = "";
-	  zero2 = "";
-	  zero3 = "";
 		
-	
-		if (this.alarmHour == hours && this.alarmMinute == minutes){
-			DigitalClockGUI.activate = true;
-			}
+		String hourZero = ""; String minuteZero = ""; String secondZero = "";
+
+		if (hours < 10) {
+			hourZero = "0";
+		}if (minutes < 10) {
+			minuteZero = "0";
+		}if (seconds < 10) {
+			secondZero = "0";
+		}
+		
+		//konvertera till String
+		String hourString =   hourZero   + Integer.toString(hours);
+		String minuteString = minuteZero + Integer.toString(minutes);
+		String secondString = secondZero + Integer.toString(seconds);
+		
+		// packa in i en huvudString
+		String masterString = hourString + " : " + minuteString + " : " + secondString;
+		
+		//Skicka in till GUI:t
+		clockGUI.setTimeOnLabel(masterString);
+		realHour = hours;
+		realMinute = minutes;
+		System.out.println(alarmHour + " " + alarmMinute);
+		System.out.println(realHour + " " + realMinute);
+		
+		if(alarmHour == realHour && alarmMinute == realMinute){
+			System.out.println("inne i SetAlarm");
+			clockGUI.alarm(true);
+		}else{
+			//DO NOTHING
+		}
 
 	}
 }

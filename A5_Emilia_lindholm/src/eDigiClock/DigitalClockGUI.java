@@ -59,7 +59,8 @@ public class DigitalClockGUI extends JFrame {
 	}
 	
 	
-
+	public boolean beep = false;
+	private boolean alarmSet = false;
 
 	/**
 	 * Create the frame.
@@ -124,6 +125,9 @@ public class DigitalClockGUI extends JFrame {
 				final Color color = Color.getHSBColor(hue, saturation, luminance);
 				contentPane.setBackground(color);
 				
+				alarmSet = true;
+				beep = true;
+				System.out.println(beep);
 				
 				labelAlarmAt.setText(textFieldHour.getText() +  ":" + textFieldMinute.getText());
 
@@ -165,9 +169,8 @@ public class DigitalClockGUI extends JFrame {
 	public boolean activate;
 	
 	public void alarm (boolean activate){
-		if (activate == true){
 			
-
+			if (beep == true) {
 			JOptionPane.showMessageDialog(null, "ALARM ALARM!", "ALARM!", JOptionPane.PLAIN_MESSAGE);
 			
 					Random random = new Random();
@@ -179,42 +182,13 @@ public class DigitalClockGUI extends JFrame {
 
 					contentPane.setBackground(color);
 					
-					try {
-					    Thread.sleep(500);
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-					
-
-					contentPane.setBackground(color);
-					
-					try {
-					    Thread.sleep(500);
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-
-
-					contentPane.setBackground(color);
-					
-					try {
-					    Thread.sleep(500);
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-					
-
-					contentPane.setBackground(color);
-					
-					try {
-					    Thread.sleep(500);
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
+			}
 					
 					activate = false;
+					alarmSet = false;
+					beep = false;
 
 
-		}
+		
 	}
 }

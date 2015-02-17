@@ -7,7 +7,10 @@ public class ClockThread extends Thread {
 	
 	private ClockInterface clockInterface;
 
+	boolean isOn = true;
 	private boolean running = true;
+	
+	int hours, minutes, seconds;
 	
 	public ClockThread (ClockInterface ci){
 		this.clockInterface = ci;
@@ -18,9 +21,7 @@ public class ClockThread extends Thread {
 	public void run(){
 		while (running == true){
 
-			Calendar now = Calendar.getInstance();
-			clockInterface.update(now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));	
-			
+		
 			try {
 				Thread.sleep(900);
 
@@ -29,6 +30,12 @@ public class ClockThread extends Thread {
 				e.printStackTrace();
 			}
 
+			Calendar calendar = Calendar.getInstance();
+			this.hours = calendar.get(Calendar.HOUR_OF_DAY);
+			this.minutes = calendar.get(Calendar.MINUTE);
+			this.seconds = calendar.get(Calendar.SECOND);		
+			this.clockInterface.update(hours, minutes, seconds);
+			
 			}
 	}
 	
