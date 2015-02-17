@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -24,16 +25,22 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.Window.Type;
 import java.util.Calendar;
+import java.util.Random;
 
 public class DigitalClockGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldHour;
 	private JTextField textFieldMinute;
-	
-	private ClockLogic clockLogic;
+
+
+	ClockLogic clockLogic; 
+
 
 	JLabel labelTime = new JLabel("00:00:00");
+	JLabel labelAlarmAt = new JLabel("00:00");
+
+	
 	
 	/**
 	 * Launch the application.
@@ -77,6 +84,9 @@ public class DigitalClockGUI extends JFrame {
 		contentPane.add(lblAlarmClock);
 		
 
+
+		clockLogic = new ClockLogic(this);
+
 		labelTime.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTime.setForeground(Color.WHITE);
 		labelTime.setFont(new Font("Aharoni", Font.PLAIN, 99));
@@ -106,6 +116,17 @@ public class DigitalClockGUI extends JFrame {
 		btnSetAlarm.setFont(new Font("Aharoni", Font.BOLD, 11));
 		btnSetAlarm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Random random = new Random();
+				final float hue = random.nextFloat();
+				// Saturation between 0.1 and 0.3
+				final float saturation = (random.nextInt(2000) + 1000) / 10000f;
+				final float luminance = 0.9f;
+				final Color color = Color.getHSBColor(hue, saturation, luminance);
+				contentPane.setBackground(color);
+				
+				
+				labelAlarmAt.setText(textFieldHour.getText() +  ":" + textFieldMinute.getText());
+
 			}
 		});
 		btnSetAlarm.setBounds(296, 193, 89, 23);
@@ -117,16 +138,16 @@ public class DigitalClockGUI extends JFrame {
 		lblAlarmAt.setBounds(117, 161, 155, 28);
 		contentPane.add(lblAlarmAt);
 		
-		JLabel LabelAlarmAt = new JLabel("00:00");
-		LabelAlarmAt.setHorizontalAlignment(SwingConstants.RIGHT);
-		LabelAlarmAt.setForeground(Color.WHITE);
-		LabelAlarmAt.setFont(new Font("Aharoni", Font.PLAIN, 30));
-		LabelAlarmAt.setBounds(198, 161, 111, 23);
-		contentPane.add(LabelAlarmAt);
+		labelAlarmAt.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelAlarmAt.setForeground(Color.WHITE);
+		labelAlarmAt.setFont(new Font("Aharoni", Font.PLAIN, 30));
+		labelAlarmAt.setBounds(198, 161, 111, 23);
+		contentPane.add(labelAlarmAt);
 		
 		JButton btnClearAlarm = new JButton("Clear Alarm");
 		btnClearAlarm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				labelAlarmAt.setText(null);
 			}
 		});
 		btnClearAlarm.setFont(new Font("Aharoni", Font.BOLD, 11));
@@ -135,11 +156,65 @@ public class DigitalClockGUI extends JFrame {
 	
 	}
 	
+
+	
 	public void setTimeOnLabel (String time){
 		labelTime.setText(time);
 	}
 	
 	
 	
-	public void alarm (){}
+	public void alarm (boolean activate){
+		if (activate == true){
+			
+
+			JOptionPane.showMessageDialog(null, "ALARM ALARM!", "ALARM!", JOptionPane.PLAIN_MESSAGE);
+			
+					Random random = new Random();
+					final float hue = random.nextFloat();
+					// Saturation between 0.1 and 0.3
+					final float saturation = (random.nextInt(2000) + 1000) / 10000f;
+					final float luminance = 0.9f;
+					final Color color = Color.getHSBColor(hue, saturation, luminance);
+
+					contentPane.setBackground(color);
+					
+					try {
+					    Thread.sleep(500);
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}
+					
+
+					contentPane.setBackground(color);
+					
+					try {
+					    Thread.sleep(500);
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}
+
+
+					contentPane.setBackground(color);
+					
+					try {
+					    Thread.sleep(500);
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}
+					
+
+					contentPane.setBackground(color);
+					
+					try {
+					    Thread.sleep(500);
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}
+					
+					activate = false;
+
+
+		}
+	}
 }
