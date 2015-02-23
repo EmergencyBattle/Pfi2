@@ -13,22 +13,32 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
+import se.mah.k3lara.skaneAPI.control.Constants;
+import se.mah.k3lara.skaneAPI.model.Journey;
+import se.mah.k3lara.skaneAPI.model.Journeys;
 import se.mah.k3lara.skaneAPI.model.Station;
 import se.mah.k3lara.skaneAPI.xmlparser.Parser;
 
 public class GUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldSearch;
-	private JTextField textFieldFrom;
-	private JTextField textFieldTo;
+	JTextField textFieldSearch;
+	JTextField textFieldFrom;
+	JTextField textFieldTo;
 
 	JTextArea textAreaStations = new JTextArea();
+	JTextArea textAreaJourney = new JTextArea();
 
+	private Parser p = new Parser();
+	
+	Thread tJ = new JourneysThread(p, this);
+	Thread tS = new StationsThread(p, this);
+	
 	/**
 	 * Launch the application.
 	 */
@@ -69,17 +79,9 @@ public class GUI extends JFrame {
 		JButton btnSearchStation = new JButton("Search");
 		btnSearchStation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// code for searching stations
-				textAreaStations.setText(null);
-				ArrayList<Station> searchStations = new ArrayList<Station>();
-				searchStations.addAll(Parser.getStationsFromURL(textFieldSearch
-						.getText()));
-				for (Station s : searchStations) {
-					textAreaStations.append(s.getStationName() + " number:"
-							+ s.getStationNbr() + " Latutide: "
-							+ s.getLatitude() + " Longitude: "
-							+ s.getLongitude() + "\n");
-				}
+
+				tS.start();
+				
 			}
 		});
 		btnSearchStation.setBounds(61, 58, 89, 23);
@@ -120,7 +122,8 @@ public class GUI extends JFrame {
 		JButton btnSearchJourney = new JButton("Search");
 		btnSearchJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// code for searching all data relating to a journey
+
+				tJ.start();
 				
 			}
 		});
@@ -131,7 +134,7 @@ public class GUI extends JFrame {
 		scrollPane.setBounds(0, 91, 200, 160);
 		panel_1.add(scrollPane);
 
-		JTextArea textAreaJourney = new JTextArea();
+
 		scrollPane.setViewportView(textAreaJourney);
 	}
 }
