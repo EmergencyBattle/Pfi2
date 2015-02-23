@@ -1,0 +1,9 @@
+1) Malmo C - Lund C
+
+2) ?cmdaction=next&selPointFr=0|80000|0&selPointTo=0|81216|0&noOf=5
+
+3) <Journeys> Journey kapslar in alla resealternativ, <Journey> allt som beskriver en foreslagen resa, <RouteLinks> innehaller alla etapper i en Journey, <RouteLink> innehaller all information om en etapp, sasom priszoner, fran och till etc.
+
+4) <RouteLinks> under <Journey>
+
+5) <p></p>
