@@ -34,6 +34,7 @@ public class GUI extends JFrame {
 	JTextArea textAreaStations = new JTextArea();
 	JTextArea textAreaJourney = new JTextArea();
 
+	GUI g = this;
 	private Parser p = new Parser();
 	
 	Thread tJ = new JourneysThread(p, this);
@@ -80,6 +81,7 @@ public class GUI extends JFrame {
 		btnSearchStation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				Thread tS = new StationsThread(p,g);
 				tS.start();
 				
 			}
@@ -123,6 +125,7 @@ public class GUI extends JFrame {
 		btnSearchJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				Thread tJ = new JourneysThread(p,g);
 				tJ.start();
 				
 			}

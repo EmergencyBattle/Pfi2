@@ -27,7 +27,7 @@ public class StationsThread extends Thread {
 		gui.textAreaStations.setText(null);
 		for (Station s : searchStations) {
 			gui.textAreaStations.append(s.getStationName() + " number:"
-					+ s.getStationNbr() + " Latutide: "
+					+ s.getStationNbr() + " Latitude: "
 					+ s.getLatitude() + " Longitude: "
 					+ s.getLongitude() + "\n");
 		}
