@@ -182,9 +182,9 @@ public class GUI extends JFrame {
 		lblAvgang.setText(FixThatClock(lines.getLines().get(0).getDepTime().get(Calendar.HOUR_OF_DAY)) + ":" + FixThatClock(lines.getLines().get(0).getDepTime().get(Calendar.MINUTE)));
 		lblAvgang2.setText(FixThatClock(lines.getLines().get(1).getDepTime().get(Calendar.HOUR_OF_DAY)) + ":" + FixThatClock(lines.getLines().get(1).getDepTime().get(Calendar.MINUTE)));
 		lblAvgang3.setText(FixThatClock(lines.getLines().get(2).getDepTime().get(Calendar.HOUR_OF_DAY)) + ":" + FixThatClock(lines.getLines().get(2).getDepTime().get(Calendar.MINUTE)));
-		lblDelay.setText(lines.getLines().get(0).depTimeDeviation + " min");
-		lblDelay2.setText(lines.getLines().get(1).depTimeDeviation + " min");
-		lblDelay3.setText(lines.getLines().get(2).depTimeDeviation + " min");
+		lblDelay.setText("0"+lines.getLines().get(0).depTimeDeviation + " min");
+		lblDelay2.setText("0"+lines.getLines().get(1).depTimeDeviation + " min");
+		lblDelay3.setText("0"+lines.getLines().get(2).depTimeDeviation + " min");
 	}
 	
 	public String FixThatClock(int time){
