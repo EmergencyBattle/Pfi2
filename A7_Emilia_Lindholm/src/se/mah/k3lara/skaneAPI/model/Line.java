@@ -9,6 +9,7 @@ public class Line {
 	private Calendar depTime;
 	private String depTimeDeviation;
 	private String toStationName;
+	private String newDepTime;
 	
 	private Parser parser = new Parser();
 	
@@ -38,6 +39,12 @@ public class Line {
 	
 	public void setDestination(String toStationName){
 		this.toStationName = toStationName;
+	}
+	public void setNewDepTime() {
+		this.newDepTime = newDepTime;
+	}
+	public String getNewDepTime() {
+		return newDepTime;
 	}
 	//More methods here for the rest of the tags
 	//And perhaps some special methods ????
