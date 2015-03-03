@@ -14,7 +14,7 @@ import se.mah.k3lara.skaneAPI.xmlparser.Parser;
 public class TestClass {
 
 	public static void main(String[] args) {
-		String searchURL = Constants.getURL("80000","81216",20); //Malmö C = 80000,  Lund C, 81216 Malmö Gatorg 80100, Hässleholm C 93070
+		String searchURL = Constants.getURL("80000","81216",20); //Malmoe C = 80000,  Lund C, 81216 Malmoe Gatorg 80100, Hässleholm C 93070
 		System.out.println(searchURL);
 		System.out.println("// Results when searching:");
 		
@@ -36,7 +36,7 @@ public class TestClass {
 		System.out.println("// Busses departing from Ubåtshallen stationsnummer 80046 ");
 		Lines lines = Parser.getStationResults(new Station("80046"));
 		for (Line l : lines.getLines()) {
-			System.out.println("Line " + l.getLine() +" departs: "+l.getDepTime().get(Calendar.HOUR_OF_DAY)+":"+l.getDepTime().get(Calendar.MINUTE)+
+			System.out.println("Line " + l.getLine() +" bus to " + l.getDestination() + ": "+l.getDepTime().get(Calendar.HOUR_OF_DAY)+":"+l.getDepTime().get(Calendar.MINUTE)+
 					" and is "+l.getDepTimeDeviation()+" minutes late");
 		}
 	}
