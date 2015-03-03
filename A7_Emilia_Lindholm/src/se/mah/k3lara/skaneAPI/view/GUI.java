@@ -21,6 +21,7 @@ import java.util.Calendar;
 public class GUI extends JFrame {
 
 	private JPanel contentPane;
+	private SearchThread t;
 
 	JLabel lblLine = new JLabel("");
 	JLabel lblDestination = new JLabel("");
@@ -144,6 +145,33 @@ public class GUI extends JFrame {
 
 
 		
+		
+		
+		lblForseningar.setForeground(Color.WHITE);
+		lblForseningar.setBounds(343, 63, 81, 14);
+		panel.add(lblForseningar);
+		
+		lblDelay.setForeground(Color.WHITE);
+		lblDelay.setBounds(343, 92, 46, 14);
+		panel.add(lblDelay);
+		
+		lblDelay2.setForeground(Color.WHITE);
+		lblDelay2.setBounds(343, 108, 46, 14);
+		panel.add(lblDelay2);
+		
+		lblDelay3.setForeground(Color.WHITE);
+		lblDelay3.setBounds(343, 123, 46, 14);
+		panel.add(lblDelay3);
+		
+		UpdateLabels();
+		
+		Thread t = new SearchThread(this);
+		t.start();
+		
+		
+	}
+	
+	public void UpdateLabels (){
 		Lines lines = Parser.getStationResults(new Station("80046"));
 		lblLine.setText(lines.getLines().get(0).getLine());
 		lblLine2.setText(lines.getLines().get(1).getLine());
@@ -151,32 +179,29 @@ public class GUI extends JFrame {
 		lblDestination.setText(lines.getLines().get(0).getDestination());
 		lblDestination2.setText(lines.getLines().get(1).getDestination());
 		lblDestination3.setText(lines.getLines().get(2).getDestination());
-		lblAvgang.setText(lines.getLines().get(0).getDepTime().get(Calendar.HOUR_OF_DAY)+":"+ lines.getLines().get(0).getDepTime().get(Calendar.MINUTE));
-		lblAvgang2.setText(lines.getLines().get(1).getDepTime().get(Calendar.HOUR_OF_DAY)+":"+ lines.getLines().get(1).getDepTime().get(Calendar.MINUTE));
-		lblAvgang3.setText(lines.getLines().get(2).getDepTime().get(Calendar.HOUR_OF_DAY)+":"+ lines.getLines().get(2).getDepTime().get(Calendar.MINUTE));
-		lblForseningar.setForeground(Color.WHITE);
-		lblForseningar.setBounds(343, 63, 81, 14);
-		
-		panel.add(lblForseningar);
-		lblDelay.setForeground(Color.WHITE);
-		lblDelay.setBounds(343, 92, 46, 14);
-		
-		panel.add(lblDelay);
-		lblDelay2.setForeground(Color.WHITE);
-		lblDelay2.setBounds(343, 108, 46, 14);
-		
-		panel.add(lblDelay2);
-		lblDelay3.setForeground(Color.WHITE);
-		lblDelay3.setBounds(343, 123, 46, 14);
-		
-		panel.add(lblDelay3);
-		
-		UpdateLabels();
-		  
+		lblAvgang.setText(FixThatClock(lines.getLines().get(0).getDepTime().get(Calendar.HOUR_OF_DAY)) + ":" + FixThatClock(lines.getLines().get(0).getDepTime().get(Calendar.MINUTE)));
+		lblAvgang2.setText(FixThatClock(lines.getLines().get(1).getDepTime().get(Calendar.HOUR_OF_DAY)) + ":" + FixThatClock(lines.getLines().get(1).getDepTime().get(Calendar.MINUTE)));
+		lblAvgang3.setText(FixThatClock(lines.getLines().get(2).getDepTime().get(Calendar.HOUR_OF_DAY)) + ":" + FixThatClock(lines.getLines().get(2).getDepTime().get(Calendar.MINUTE)));
+		/*lblDelay.setText(text);
+		lblDelay2.setText(text);
+		lblDelay3.setText(text);*/
 	}
 	
-	public void UpdateLabels (){
-		
-	}
+	public String FixThatClock(int time){
+		  // Some variables that will create a '0' if a number is single digit, to
+		  // make it nicer.
+		  String zero = "";
+
+		  if (time < 10) {
+		   zero = "0";
+		  }
+
+		  // Compiles the values to nice, readable strings.
+		  String finalTimeString = zero + Integer.toString(time);
+
+		  zero = "";
+		  
+		  return finalTimeString;
+		 }
 	
 }
