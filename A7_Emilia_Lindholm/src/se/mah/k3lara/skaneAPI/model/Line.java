@@ -7,7 +7,7 @@ import se.mah.k3lara.skaneAPI.xmlparser.Parser;
 public class Line {
 	private String line;
 	private Calendar depTime;
-	private String depTimeDeviation;
+	public String depTimeDeviation;
 	private String toStationName;
 	private String newDepTime;
 	
